@@ -1,8 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
-import { useState } from 'react'
 import { 
   Calendar,
   CreditCard,
@@ -12,17 +10,13 @@ import {
   TrendingUp,
   CheckCircle,
   ArrowRight,
-  Menu,
-  X,
   Star,
   Zap,
-  Mail
 } from 'lucide-react'
-import ThemeToggle from '@/components/ThemeToggle'
+import NavBar from '@/components/NavBar'
+import Footer from '@/components/Footer'
 
 export default function LandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
   const features = [
     {
       icon: Calendar,
@@ -73,69 +67,10 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-dark-bg">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/95 dark:bg-dark-surface/95 backdrop-blur-md border-b border-zinc-100 dark:border-dark-outline-variant/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-24">
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/Get It Done.png" alt="Logo" width={192} height={192} className="w-24 h-24 rounded-md" />
-            </Link>
-
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium">Features</a>
-              <a href="#how-it-works" className="text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium">How It Works</a>
-              <a href="#pricing" className="text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium">Pricing</a>
-              <a href="#testimonials" className="text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium">Reviews</a>
-            </div>
-
-            <div className="hidden md:flex items-center gap-4">
-              {/* <ThemeToggle /> */}
-              <Link href="/auth/login" className="text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium">
-                Sign In
-              </Link>
-              <Link 
-                href="/auth/signup" 
-                className="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:bg-red-700 transition-all"
-              >
-                Get Started Free
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-dark-surface border-t border-zinc-100 dark:border-dark-outline-variant/50 px-6 py-4 space-y-4">
-            <a href="#features" className="block text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium py-2">Features</a>
-            <a href="#how-it-works" className="block text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium py-2">How It Works</a>
-            <a href="#pricing" className="block text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium py-2">Pricing</a>
-            <a href="#testimonials" className="block text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium py-2">Reviews</a>
-            <div className="pt-4 border-t border-zinc-100 space-y-3">
-              <Link href="/auth/login" className="block text-center text-zinc-600 dark:text-dark-on-surface-variant hover:text-primary font-medium py-2">
-                Sign In
-              </Link>
-              <Link 
-                href="/auth/signup" 
-                className="block text-center bg-primary text-white px-6 py-3 rounded-full font-semibold"
-              >
-                Get Started Free
-              </Link>
-            </div>
-          </div>
-        )}
-      </nav>
+      <NavBar type="public" />
 
       {/* Hero Section */}
-      <section className="pt-40 pb-20 px-6 bg-white dark:bg-dark-bg">
+      <section className="pt-32 pb-20 px-6 bg-white dark:bg-dark-bg">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-8">
             <Zap className="w-4 h-4" />
@@ -197,23 +132,21 @@ export default function LandingPage() {
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-white dark:bg-dark-surface p-6 rounded-xl border border-zinc-200 dark:border-dark-outline hover:border-primary/30 transition-colors cursor-pointer">
-                  <div className="flex justify-between items-start mb-3">
-                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-bold">POPULAR</span>
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs text-zinc-500 dark:text-dark-on-surface-variant">60 min</span>
+                    <span className="text-xs bg-primary text-white px-2 py-1 rounded-full font-bold">POPULAR</span>
                   </div>
                   <h4 className="font-bold text-lg text-zinc-900 dark:text-dark-on-bg mb-2">Career Coaching Session</h4>
-                  <p className="text-sm text-zinc-500 dark:text-dark-on-surface-variant mb-4">90-minute deep dive into your career goals</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-zinc-500 dark:text-dark-on-surface-variant">60 min</span>
-                    <span className="font-bold text-xl text-primary">KES 5,000</span>
-                  </div>
+                  <p className="text-sm text-zinc-500 dark:text-dark-on-surface-variant mb-4">Deep dive into your career goals and create an action plan</p>
+                  <span className="font-bold text-xl text-primary">KES 5,000</span>
                 </div>
                 <div className="bg-white dark:bg-dark-surface p-6 rounded-xl border border-zinc-200 dark:border-dark-outline hover:border-primary/30 transition-colors cursor-pointer">
-                  <h4 className="font-bold text-lg text-zinc-900 dark:text-dark-on-bg mb-2">Quick Strategy Call</h4>
-                  <p className="text-sm text-zinc-500 dark:text-dark-on-surface-variant mb-4">30-minute focused problem solving</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-zinc-500 dark:text-dark-on-surface-variant">30 min</span>
-                    <span className="font-bold text-xl text-zinc-900 dark:text-dark-on-bg">KES 2,500</span>
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xs text-zinc-500 dark:text-dark-on-surface-variant">30 min</span>
                   </div>
+                  <h4 className="font-bold text-lg text-zinc-900 dark:text-dark-on-bg mb-2">Quick Strategy Call</h4>
+                  <p className="text-sm text-zinc-500 dark:text-dark-on-surface-variant mb-4">Focused problem-solving for urgent challenges</p>
+                  <span className="font-bold text-xl text-zinc-900 dark:text-dark-on-bg">KES 2,500</span>
                 </div>
               </div>
             </div>
@@ -437,47 +370,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-zinc-900 dark:bg-dark-surface text-zinc-400 dark:text-dark-on-surface-variant py-12 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <Image src="/Get It Done.png" alt="Logo" width={32} height={32} className="w-8 h-8 rounded-md mb-4" />
-              <p className="text-sm">Booking & payment platform for Kenyan consultants.</p>
-            </div>
-            <div>
-              <h4 className="text-white dark:text-dark-on-bg font-bold mb-4">Product</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#features" className="hover:text-white dark:hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#pricing" className="hover:text-white dark:hover:text-primary transition-colors">Pricing</a></li>
-                <li><a href="/demo" className="hover:text-white dark:hover:text-primary transition-colors">Demo</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white dark:text-dark-on-bg font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="/about" className="hover:text-white dark:hover:text-primary transition-colors">About</a></li>
-                <li><a href="/blog" className="hover:text-white dark:hover:text-primary transition-colors">Blog</a></li>
-                <li><a href="/contact" className="hover:text-white dark:hover:text-primary transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white dark:text-dark-on-bg font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="/privacy" className="hover:text-white dark:hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms" className="hover:text-white dark:hover:text-primary transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-zinc-800 dark:border-dark-outline-variant pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm">&copy; {new Date().getFullYear()} Get It Done</p>
-            <p className="text-sm text-zinc-500 dark:text-dark-on-surface-variant">A product of <span className="font-semibold text-primary">Tich Labs</span> — powered by <span className="font-semibold text-primary">Mama Tech</span></p>
-            <a href="mailto:hello@getitdone.co.ke" className="hover:text-white dark:hover:text-primary transition-colors">
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
